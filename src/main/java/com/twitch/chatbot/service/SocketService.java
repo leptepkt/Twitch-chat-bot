@@ -56,15 +56,6 @@ public class SocketService {
         }
     }
 
-    public void sendMessage(String message) {
-        try {
-            writer.write("PRIVMSG #" + channel + " :" + message);
-            writer.flush();
-        } catch (IOException e) {
-            logger.error("Cannot connect to server: " + e.getMessage());
-        }
-    }
-
     public BufferedWriter getWriter() {
         return writer;
     }
