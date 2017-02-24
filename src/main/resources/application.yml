@@ -1,0 +1,6 @@
+twitch:
+  server: irc.chat.twitch.tv
+  nick: chat_bot
+  pass: oauth:wpwkuxtis8595rajmp0ui83nxrne9d
+  channel: leptepkt
+  port: 6667
