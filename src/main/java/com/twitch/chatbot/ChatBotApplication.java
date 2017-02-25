@@ -28,7 +28,7 @@ public class ChatBotApplication implements CommandLineRunner {
 
     @Override
     public void run(String... strings) throws Exception {
-        String line;
+        String line = "";
         int count = 0;
         while ((line = socketService.getReader().readLine()) != null) {
             if (line.startsWith("PING ")) {
