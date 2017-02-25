@@ -36,9 +36,13 @@ public class ChatBotApplication implements CommandLineRunner {
                 socketService.getWriter().flush();
             } else {
                 logger.info(line);
-                if (line.contains("!mmr")) {
+                if (line.contains(":!mmr")) {
                     int mmr = random.nextInt(9001);
                     botService.sendMessage(botService.getUsername(line) + "'s MMR is " + mmr);
+                }
+
+                if (line.contains(":!botstatus")) {
+                    botService.sendMessage("I'm a available. Type !mmr to display your real MMR");
                 }
             }
         }
