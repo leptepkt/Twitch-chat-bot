@@ -20,4 +20,11 @@ public class IndexController {
     public ResponseEntity<String> index() {
         return new ResponseEntity<String>("Number of executed command: " + botService.getNumberOfExecutedCommand(), HttpStatus.OK);
     }
+
+    @RequestMapping("/notify")
+    public ResponseEntity<String> noti() {
+        botService.sendMessage("I'm a available. Type !mmr to display your real MMR or !dick to display how long is your dick");
+
+        return new ResponseEntity<String>("Notified", HttpStatus.OK);
+    }
 }
