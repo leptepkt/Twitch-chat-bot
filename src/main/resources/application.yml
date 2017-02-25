@@ -1,6 +1,6 @@
 twitch:
   server: irc.chat.twitch.tv
-  nick: #twitch username
-  pass: #oauth pass
-  channel: #channel
+  nick: yourfatherbot
+  pass: oauth:f3c5fd7bmpkxrphzmvgc9vmw4x4aix
+  channel: 23creativevn
   port: 6667
