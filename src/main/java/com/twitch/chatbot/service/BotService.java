@@ -20,6 +20,8 @@ public class BotService {
     @Autowired
     private SettingConfiguration settingConfiguration;
 
+    private int numberOfExecutedCommand;
+
     public void sendMessage(String message) {
         try {
             socketService.getWriter().write("PRIVMSG #" + settingConfiguration.getChannel() + " :" + message + "\r\n");
@@ -31,5 +33,13 @@ public class BotService {
 
     public String getUsername(String content) {
         return content.substring(1, content.indexOf("!"));
+    }
+
+    public int getNumberOfExecutedCommand() {
+        return numberOfExecutedCommand;
+    }
+
+    public void setNumberOfExecutedCommand(int numberOfExecutedCommand) {
+        this.numberOfExecutedCommand = numberOfExecutedCommand;
     }
 }

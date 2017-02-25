@@ -29,15 +29,19 @@ public class ChatBotApplication implements CommandLineRunner {
     @Override
     public void run(String... strings) throws Exception {
         String line;
+        int count = 0;
         while ((line = socketService.getReader().readLine()) != null) {
             if (line.startsWith("PING ")) {
                 // We must respond to PINGs to avoid being disconnected.
                 socketService.getWriter().write("PONG " + line.substring(5) + "\r\n");
                 socketService.getWriter().flush();
+                logger.info("PONG");
             } else {
                 if (line.contains(":!mmr")) {
                     int mmr = random.nextInt(9001);
                     botService.sendMessage(botService.getUsername(line) + "'s MMR is " + mmr);
+                    count++;
+                    botService.setNumberOfExecutedCommand(count);
                 }
                 if (line.contains(":!dick")) {
                     int dick = 3 + random.nextInt(23);
@@ -45,11 +49,13 @@ public class ChatBotApplication implements CommandLineRunner {
                         botService.sendMessage(botService.getUsername(line) + "'s dick is " + dick + " cm 4Head");
                     } else if (dick <= 15) {
                         botService.sendMessage(botService.getUsername(line) + "'s dick is " + dick + " cm cmonBruh");
-                    } else if (dick <=20) {
+                    } else if (dick <= 20) {
                         botService.sendMessage(botService.getUsername(line) + "'s dick is " + dick + " cm SeemsGood");
                     } else {
                         botService.sendMessage(botService.getUsername(line) + "'s dick is " + dick + " cm PogChamp");
                     }
+                    count++;
+                    botService.setNumberOfExecutedCommand(count);
                 }
 
                 if (line.contains(":!botstatus")) {
