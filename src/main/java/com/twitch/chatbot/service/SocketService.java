@@ -1,7 +1,9 @@
 package com.twitch.chatbot.service;
 
+import com.twitch.chatbot.config.SettingConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -15,34 +17,28 @@ import java.net.Socket;
 public class SocketService {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @Value("${twitch.server}")
-    private String server = "irc.chat.twitch.tv";
-    @Value("${twitch.nick}")
-    private String nick = "chat_bot";
-    @Value("${twitch.pass}")
-    private String pass = "oauth:wpwkuxtis8595rajmp0ui83nxrne9d";
-    @Value("${twitch.channel}")
-    private String channel = "leptepkt";
-    @Value("${twitch.port}")
-    private int port = 6667;
+    private SettingConfiguration settingConfiguration;
 
     private Socket socket;
     private BufferedWriter writer;
     private BufferedReader reader;
 
-    public SocketService() {
+    @Autowired
+    public SocketService(SettingConfiguration settingConfiguration) {
+        this.settingConfiguration = settingConfiguration;
+
         try {
-            socket = new Socket(server, port);
+            socket = new Socket(settingConfiguration.getServer(), settingConfiguration.getPort());
             writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
             reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
-            writer.write("PASS " + pass + "\r\n");
-            writer.write("NICK " + nick + "\r\n");
-            writer.write("JOIN #" + channel + "\r\n");
+            writer.write("PASS " + settingConfiguration.getPass() + "\r\n");
+            writer.write("NICK " + settingConfiguration.getNick() + "\r\n");
+            writer.write("JOIN #" + settingConfiguration.getChannel() + "\r\n");
             writer.flush();
 
             String line;
-            while ((line = reader.readLine( )) != null) {
+            while ((line = reader.readLine()) != null) {
                 logger.info(line);
                 if (line.contains("End of /NAMES list")) {
                     logger.info("Connected to IRC");
@@ -63,4 +59,6 @@ public class SocketService {
     public BufferedReader getReader() {
         return reader;
     }
+
+
 }
