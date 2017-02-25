@@ -35,7 +35,6 @@ public class ChatBotApplication implements CommandLineRunner {
                 socketService.getWriter().write("PONG " + line.substring(5) + "\r\n");
                 socketService.getWriter().flush();
             } else {
-                logger.info(line);
                 if (line.contains(":!mmr")) {
                     int mmr = random.nextInt(9001);
                     botService.sendMessage(botService.getUsername(line) + "'s MMR is " + mmr);
