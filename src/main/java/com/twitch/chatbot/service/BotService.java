@@ -20,7 +20,7 @@ public class BotService {
     @Autowired
     private SettingConfiguration settingConfiguration;
 
-    private int numberOfExecutedCommand;
+    private int numberOfExecutedCommand = 0;
 
     public void sendMessage(String message) {
         try {
