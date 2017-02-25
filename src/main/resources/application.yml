@@ -4,3 +4,16 @@ twitch:
   pass: oauth:f3c5fd7bmpkxrphzmvgc9vmw4x4aix
   channel: 23creativevn
   port: 6667
+setting:
+  predict:
+    teamA: HKA
+    teamB: Enemy
+#spring:
+#  datasource:
+#    url: jdbc:postgresql://localhost:5432/chatbot
+#    driver-class-name: org.postgresql.Driver
+#    password: 123456
+#    username: postgres
+#  jpa:
+#    hibernate:
+#      ddl-auto: update

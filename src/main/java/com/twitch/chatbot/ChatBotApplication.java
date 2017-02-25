@@ -1,5 +1,6 @@
 package com.twitch.chatbot;
 
+import com.twitch.chatbot.config.SettingConfiguration;
 import com.twitch.chatbot.service.BotService;
 import com.twitch.chatbot.service.SocketService;
 import org.slf4j.Logger;
@@ -19,6 +20,8 @@ public class ChatBotApplication implements CommandLineRunner {
     private SocketService socketService;
     @Autowired
     private BotService botService;
+    @Autowired
+    private SettingConfiguration settingConfiguration;
 
     private Random random = new Random();
 
@@ -30,6 +33,10 @@ public class ChatBotApplication implements CommandLineRunner {
     public void run(String... strings) throws Exception {
         String line = "";
         int count = 0;
+
+        int teamA = 0;
+        int teamB = 0;
+
         while ((line = socketService.getReader().readLine()) != null) {
             if (line.startsWith("PING ")) {
                 // We must respond to PINGs to avoid being disconnected.
@@ -37,29 +44,42 @@ public class ChatBotApplication implements CommandLineRunner {
                 socketService.getWriter().flush();
                 logger.info("PONG");
             } else {
-                if (line.contains(":!mmr")) {
-                    int mmr = random.nextInt(9001);
-                    botService.sendMessage(botService.getUsername(line) + "'s MMR is " + mmr);
-                    count++;
-                    botService.setNumberOfExecutedCommand(count);
-                }
-                if (line.contains(":!dick")) {
-                    int dick = 3 + random.nextInt(23);
-                    if (dick <= 10) {
-                        botService.sendMessage(botService.getUsername(line) + "'s dick is " + dick + " cm 4Head");
-                    } else if (dick <= 15) {
-                        botService.sendMessage(botService.getUsername(line) + "'s dick is " + dick + " cm cmonBruh");
-                    } else if (dick <= 20) {
-                        botService.sendMessage(botService.getUsername(line) + "'s dick is " + dick + " cm SeemsGood");
-                    } else {
-                        botService.sendMessage(botService.getUsername(line) + "'s dick is " + dick + " cm PogChamp");
-                    }
-                    count++;
-                    botService.setNumberOfExecutedCommand(count);
-                }
+//                if (line.contains(":!mmr")) {
+//                    int mmr = random.nextInt(9001);
+//                    botService.sendMessage(botService.getUsername(line) + "'s MMR is " + mmr);
+//                    count++;
+//                    botService.setNumberOfExecutedCommand(count);
+//                }
+//                if (line.contains(":!dick")) {
+//                    int dick = 3 + random.nextInt(23);
+//                    if (dick <= 10) {
+//                        botService.sendMessage(botService.getUsername(line) + "'s dick is " + dick + " cm 4Head");
+//                    } else if (dick <= 15) {
+//                        botService.sendMessage(botService.getUsername(line) + "'s dick is " + dick + " cm cmonBruh");
+//                    } else if (dick <= 20) {
+//                        botService.sendMessage(botService.getUsername(line) + "'s dick is " + dick + " cm SeemsGood");
+//                    } else {
+//                        botService.sendMessage(botService.getUsername(line) + "'s dick is " + dick + " cm PogChamp");
+//                    }
+//                    count++;
+//                    botService.setNumberOfExecutedCommand(count);
+//                }
 
-                if (line.contains(":!botstatus")) {
-                    botService.sendMessage("I'm a available. Type !mmr to display your real MMR or !dick to display how long is your dick");
+                if (line.contains(":!vote " + settingConfiguration.getTeamAName())) {
+                    teamA++;
+                }
+                if (line.contains(":!vote " + settingConfiguration.getTeamBName())) {
+                    teamB++;
+                }
+                if (line.contains(":!predict")) {
+                    if (teamA > teamB) {
+                        botService.sendMessage(settingConfiguration.getTeamAName() + " (" + teamA + " votes) > " + settingConfiguration.getTeamBName() + " (" + teamB + " votes)");
+                    } else if (teamA < teamB) {
+                        botService.sendMessage(settingConfiguration.getTeamAName() + " (" + teamA + " votes) < " + settingConfiguration.getTeamBName() + " (" + teamB + " votes)");
+                    } else {
+                        botService.sendMessage(settingConfiguration.getTeamAName() + " (" + teamA + " votes) = " + settingConfiguration.getTeamBName() + " (" + teamB + " votes)");
+
+                    }
                 }
             }
         }

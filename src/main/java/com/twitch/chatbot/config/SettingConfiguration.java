@@ -19,6 +19,11 @@ public class SettingConfiguration {
     @Value("${twitch.port}")
     private int port;
 
+    @Value("${setting.predict.teamA}")
+    private String teamAName;
+    @Value("${setting.predict.teamB}")
+    private String teamBName;
+
     public String getServer() {
         return server;
     }
@@ -37,5 +42,13 @@ public class SettingConfiguration {
 
     public int getPort() {
         return port;
+    }
+
+    public String getTeamAName() {
+        return teamAName;
+    }
+
+    public String getTeamBName() {
+        return teamBName;
     }
 }

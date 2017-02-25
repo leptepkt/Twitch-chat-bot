@@ -27,6 +27,10 @@ public class SocketService {
     public SocketService(SettingConfiguration settingConfiguration) {
         this.settingConfiguration = settingConfiguration;
 
+        open();
+    }
+
+    public void open() {
         try {
             socket = new Socket(settingConfiguration.getServer(), settingConfiguration.getPort());
             writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
@@ -49,6 +53,16 @@ public class SocketService {
         } catch (IOException e) {
             logger.error("Cannot connect to server: " + e.getMessage());
             e.printStackTrace();
+        }
+    }
+
+    public void close() {
+        try {
+            writer.close();
+            reader.close();
+            socket.close();
+        } catch (IOException e) {
+            logger.error("Cannot close socket: " + e.getMessage());
         }
     }
 
