@@ -30,6 +30,6 @@ public class BotService {
     }
 
     public String getUsername(String content) {
-        return content.substring(0, content.indexOf("!"));
+        return content.substring(1, content.indexOf("!"));
     }
 }

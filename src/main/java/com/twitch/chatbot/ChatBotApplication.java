@@ -30,7 +30,7 @@ public class ChatBotApplication implements CommandLineRunner {
     public void run(String... strings) throws Exception {
         String line;
         while ((line = socketService.getReader().readLine()) != null) {
-            if (line.toLowerCase().startsWith("PING ")) {
+            if (line.startsWith("PING ")) {
                 // We must respond to PINGs to avoid being disconnected.
                 socketService.getWriter().write("PONG " + line.substring(5) + "\r\n");
                 socketService.getWriter().flush();
