@@ -39,9 +39,21 @@ public class ChatBotApplication implements CommandLineRunner {
                     int mmr = random.nextInt(9001);
                     botService.sendMessage(botService.getUsername(line) + "'s MMR is " + mmr);
                 }
+                if (line.contains(":!dick")) {
+                    int dick = 3 + random.nextInt(23);
+                    if (dick <= 10) {
+                        botService.sendMessage(botService.getUsername(line) + "'s dick is " + dick + " cm 4Head");
+                    } else if (dick <= 15) {
+                        botService.sendMessage(botService.getUsername(line) + "'s dick is " + dick + " cm cmonBruh");
+                    } else if (dick <=20) {
+                        botService.sendMessage(botService.getUsername(line) + "'s dick is " + dick + " cm SeemsGood");
+                    } else {
+                        botService.sendMessage(botService.getUsername(line) + "'s dick is " + dick + " cm PogChamp");
+                    }
+                }
 
                 if (line.contains(":!botstatus")) {
-                    botService.sendMessage("I'm a available. Type !mmr to display your real MMR");
+                    botService.sendMessage("I'm a available. Type !mmr to display your real MMR or !dick to display how long is your dick");
                 }
             }
         }
