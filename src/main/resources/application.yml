@@ -6,8 +6,8 @@ twitch:
   port: 6667
 setting:
   predict:
-    teamA: HKA
-    teamB: Enemy
+    teamA: TNC
+    teamB: Liquid
 #spring:
 #  datasource:
 #    url: jdbc:postgresql://localhost:5432/chatbot
