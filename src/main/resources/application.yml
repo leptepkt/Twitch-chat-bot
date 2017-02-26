@@ -6,7 +6,7 @@ twitch:
   port: 6667
 setting:
   predict:
-    teamA: TNC
+    teamA: VGJ
     teamB: Liquid
 #spring:
 #  datasource:

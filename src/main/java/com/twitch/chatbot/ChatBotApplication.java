@@ -65,11 +65,13 @@ public class ChatBotApplication implements CommandLineRunner {
 //                    botService.setNumberOfExecutedCommand(count);
 //                }
 
-                if (line.contains(":!vote " + settingConfiguration.getTeamAName())) {
-                    teamA++;
-                }
-                if (line.contains(":!vote " + settingConfiguration.getTeamBName())) {
-                    teamB++;
+                if (line.contains(":!vote")) {
+                    if (line.toLowerCase().contains(":!vote " + settingConfiguration.getTeamAName().toLowerCase())) {
+                        teamA++;
+                    }
+                    if (line.toLowerCase().contains(":!vote " + settingConfiguration.getTeamBName().toLowerCase())) {
+                        teamB++;
+                    }
                 }
                 if (line.contains(":!predict")) {
                     if (teamA > teamB) {
