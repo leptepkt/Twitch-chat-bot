@@ -44,45 +44,45 @@ public class ChatBotApplication implements CommandLineRunner {
                 socketService.getWriter().flush();
                 logger.info("PONG");
             } else {
-//                if (line.contains(":!mmr")) {
-//                    int mmr = random.nextInt(9001);
-//                    botService.sendMessage(botService.getUsername(line) + "'s MMR is " + mmr);
-//                    count++;
-//                    botService.setNumberOfExecutedCommand(count);
-//                }
-//                if (line.contains(":!dick")) {
-//                    int dick = 3 + random.nextInt(23);
-//                    if (dick <= 10) {
-//                        botService.sendMessage(botService.getUsername(line) + "'s dick is " + dick + " cm 4Head");
-//                    } else if (dick <= 15) {
-//                        botService.sendMessage(botService.getUsername(line) + "'s dick is " + dick + " cm cmonBruh");
-//                    } else if (dick <= 20) {
-//                        botService.sendMessage(botService.getUsername(line) + "'s dick is " + dick + " cm SeemsGood");
-//                    } else {
-//                        botService.sendMessage(botService.getUsername(line) + "'s dick is " + dick + " cm PogChamp");
-//                    }
-//                    count++;
-//                    botService.setNumberOfExecutedCommand(count);
-//                }
-
-                if (line.contains(":!vote")) {
-                    if (line.toLowerCase().contains(":!vote " + settingConfiguration.getTeamAName().toLowerCase())) {
-                        teamA++;
-                    }
-                    if (line.toLowerCase().contains(":!vote " + settingConfiguration.getTeamBName().toLowerCase())) {
-                        teamB++;
-                    }
+                if (line.contains(":!mmr")) {
+                    int mmr = random.nextInt(9001);
+                    botService.sendMessage(botService.getUsername(line) + "'s MMR is " + mmr);
+                    count++;
+                    botService.setNumberOfExecutedCommand(count);
                 }
-                if (line.contains(":!predict")) {
-                    if (teamA > teamB) {
-                        botService.sendMessage(settingConfiguration.getTeamAName() + " (" + teamA + " votes) > " + settingConfiguration.getTeamBName() + " (" + teamB + " votes)");
-                    } else if (teamA < teamB) {
-                        botService.sendMessage(settingConfiguration.getTeamAName() + " (" + teamA + " votes) < " + settingConfiguration.getTeamBName() + " (" + teamB + " votes)");
+                if (line.contains(":!dick")) {
+                    int dick = 3 + random.nextInt(23);
+                    if (dick <= 10) {
+                        botService.sendMessage(botService.getUsername(line) + "'s dick is " + dick + " cm 4Head");
+                    } else if (dick <= 15) {
+                        botService.sendMessage(botService.getUsername(line) + "'s dick is " + dick + " cm cmonBruh");
+                    } else if (dick <= 20) {
+                        botService.sendMessage(botService.getUsername(line) + "'s dick is " + dick + " cm SeemsGood");
                     } else {
-                        botService.sendMessage(settingConfiguration.getTeamAName() + " (" + teamA + " votes) = " + settingConfiguration.getTeamBName() + " (" + teamB + " votes)");
-
+                        botService.sendMessage(botService.getUsername(line) + "'s dick is " + dick + " cm PogChamp");
                     }
+                    count++;
+                    botService.setNumberOfExecutedCommand(count);
                 }
+
+//                if (line.contains(":!vote")) {
+//                    if (line.toLowerCase().contains(":!vote " + settingConfiguration.getTeamAName().toLowerCase())) {
+//                        teamA++;
+//                    }
+//                    if (line.toLowerCase().contains(":!vote " + settingConfiguration.getTeamBName().toLowerCase())) {
+//                        teamB++;
+//                    }
+//                }
+//                if (line.contains(":!predict")) {
+//                    if (teamA > teamB) {
+//                        botService.sendMessage(settingConfiguration.getTeamAName() + " (" + teamA + " votes) > " + settingConfiguration.getTeamBName() + " (" + teamB + " votes)");
+//                    } else if (teamA < teamB) {
+//                        botService.sendMessage(settingConfiguration.getTeamAName() + " (" + teamA + " votes) < " + settingConfiguration.getTeamBName() + " (" + teamB + " votes)");
+//                    } else {
+//                        botService.sendMessage(settingConfiguration.getTeamAName() + " (" + teamA + " votes) = " + settingConfiguration.getTeamBName() + " (" + teamB + " votes)");
+//
+//                    }
+//                }
             }
         }
     }

@@ -26,10 +26,10 @@ public class IndexController {
 
     @RequestMapping("/notify")
     public ResponseEntity<String> noti() {
-//        botService.sendMessage("I'm a available. Type !mmr to display your real MMR or !dick to display how long is your dick");
-        botService.sendMessage("I'm a bot. Type !vote " + settingConfiguration.getTeamAName() + " to vote for " + settingConfiguration.getTeamAName()
-                + ". Type !vote " + settingConfiguration.getTeamBName() + " to vote for " + settingConfiguration.getTeamBName()
-                + ". Type !predict to show current viewer's prediction");
+        botService.sendMessage("I'm a available. Type !mmr to display your real MMR or !dick to display how long is your dick");
+//        botService.sendMessage("I'm a bot. Type !vote " + settingConfiguration.getTeamAName() + " to vote for " + settingConfiguration.getTeamAName()
+//                + ". Type !vote " + settingConfiguration.getTeamBName() + " to vote for " + settingConfiguration.getTeamBName()
+//                + ". Type !predict to show current viewer's prediction");
 
         return new ResponseEntity<String>("Notified", HttpStatus.OK);
     }
