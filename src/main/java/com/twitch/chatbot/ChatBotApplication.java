@@ -2,6 +2,7 @@ package com.twitch.chatbot;
 
 import com.twitch.chatbot.config.SettingConfiguration;
 import com.twitch.chatbot.service.BotService;
+import com.twitch.chatbot.service.IndexService;
 import com.twitch.chatbot.service.SocketService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.Random;
 
@@ -22,6 +25,8 @@ public class ChatBotApplication implements CommandLineRunner {
     private BotService botService;
     @Autowired
     private SettingConfiguration settingConfiguration;
+    @Autowired
+    private IndexService indexService;
 
     private Random random = new Random();
 
@@ -83,7 +88,18 @@ public class ChatBotApplication implements CommandLineRunner {
 //
 //                    }
 //                }
+
+                if (line.contains(":!prize")) {
+                    botService.sendMessage("TI 8 prize pool is now " + indexService.getPrizePool());
+                    count++;
+                    botService.setNumberOfExecutedCommand(count);
+                }
             }
         }
+    }
+
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
     }
 }
