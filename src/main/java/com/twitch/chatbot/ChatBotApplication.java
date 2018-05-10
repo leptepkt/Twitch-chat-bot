@@ -51,7 +51,11 @@ public class ChatBotApplication implements CommandLineRunner {
             } else {
                 if (line.contains(":!mmr")) {
                     int mmr = random.nextInt(9001);
-                    botService.sendMessage(botService.getUsername(line) + "'s MMR is " + mmr);
+                    String message = botService.getUsername(line) + "'s MMR is " + mmr;
+                    if (mmr < 2000) {
+                        message = ". Don't be sad at least you are still better than Uncle M";
+                    }
+                    botService.sendMessage(message);
                     count++;
                     botService.setNumberOfExecutedCommand(count);
                 }
