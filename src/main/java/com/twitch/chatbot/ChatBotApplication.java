@@ -53,7 +53,7 @@ public class ChatBotApplication implements CommandLineRunner {
                     int mmr = random.nextInt(9001);
                     String message = botService.getUsername(line) + "'s MMR is " + mmr;
                     if (mmr < 2000) {
-                        message = ". Don't be sad at least you are still better than Uncle M";
+                        message += ". Don't be sad at least you are still better than Uncle M";
                     }
                     botService.sendMessage(message);
                     count++;
